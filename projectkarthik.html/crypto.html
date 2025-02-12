@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptEx - Buy & Sell Digital Assets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0d1117;
+            color: white;
+            margin: 0;
+          
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #161b22;
+            border-bottom: 1px solid #222831;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #c9d1d9;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: blue;
+        }
+
+        .btn-wallet {
+            background-color: #238636;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-wallet:hover {
+            background-color: #2ea043;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 3rem 1rem;
+            background-image: url(./assets/images/mainimg.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .main-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .main-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #c9d1d9;
+        }
+
+        .btn-start {
+            background-color: #238636;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-start:hover {
+            background-color: #2ea043;
+        }
+
+.dashboard {
+  padding: 20px;
+}
+
+.header .menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.header .menu li {
+  padding: 10px 15px;
+  background-color: #1a1a1a;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.crypto-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background-color: #1a1a1a;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+}
+
+.change {
+  font-weight: bold;
+}
+
+.change.green {
+  color: #0f0;
+}
+
+.change.red {
+  color: #f00;
+}
+
+.market-update {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.market-update h2 {
+  margin: 0;
+}
+
+.market-update button {
+  padding: 10px 20px;
+  background-color: #1a1a1a;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+.table-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #222;
+        }
+
+        thead {
+            background-color: #333;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        th {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        td {
+            font-size: 13px;
+        }
+
+        .positive {
+            color: #4caf50;
+        }
+
+        .negative {
+            color: #f44336;
+        }
+
+        .chart {
+            height: 30px;
+            width: 100px;
+            background: #444;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .chart.green {
+            background: linear-gradient(90deg, #4caf50 70%, #333 30%);
+        }
+
+        .chart.red {
+            background: linear-gradient(90deg, #f44336 70%, #333 30%);
+        }
+
+        @media (max-width: 768px) {
+            th, td {
+                font-size: 12px;
+            }
+
+            .chart {
+                width: 80px;
+            }
+        }
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .step {
+            text-align: center;
+            background-color: #222;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step img {
+            width: 60px;
+            margin-bottom: 15px;
+        }
+
+        .step h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .step p {
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .step img {
+                width: 50px;
+            }
+
+            .step h3 {
+                font-size: 16px;
+            }
+
+            .step p {
+                font-size: 13px;
+            }
+        }
+
+            
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">CryptEx</div>
+        <nav>
+            <ul>
+                <li><a href="#">Homepage</a></li>
+                <li><a href="#">Buy Crypto</a></li>
+                <li><a href="#">Markets</a></li>
+                <li><a href="#">Sell Crypto</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </nav>
+        <button class="btn-wallet">Wallet</button>
+    </header>
+
+    <main>
+        <div class="main-content">
+            <div class="hero-text">
+                <h1>Buy & Sell Digital Assets In The Cryptex</h1>
+                <p>Coin Cryptex is the easiest, safest, and fastest way to buy & sell crypto asset exchange.</p>
+                <button class="btn-start">Get started now</button>
+            </div>
+    </main>
+    <div class="dashboard">
+        <div class="header">
+          <ul class="menu">
+            <li>Crypto</li>
+            <li>DeFi</li>
+            <li>BSC</li>
+            <li>NFT</li>
+            <li>Metaverse</li>
+            <li>Polkadot</li>
+            <li>Solana</li>
+            <li>Opensea</li>
+            <li>Marketplace</li>
+          </ul>
+        </div>
+        <div class="crypto-cards">
+          <div class="card">
+            <div class="card-header">
+              <span class="coin-name">Bitcoin</span>
+              <span class="coin-symbol">BTC/USD</span>
+            </div>
+            <div class="price">USD 96,168.95</div>
+            <div class="stats">
+              <span>36,641.20</span>
+              <span class="change red">-0.79%</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <span class="coin-name">Ethereum</span>
+              <span class="coin-symbol">ETH/USD</span>
+            </div>
+            <div class="price">USD 3,480.04</div>
+            <div class="stats">
+              <span>36,641.20</span>
+              <span class="change green">+10.85%</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <span class="coin-name">Tether</span>
+              <span class="coin-symbol">USDT/USD</span>
+            </div>
+            <div class="price">USD 1.00</div>
+            <div class="stats">
+              <span>36,641.20</span>
+              <span class="change red">-0.01%</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <span class="coin-name">BNB</span>
+              <span class="coin-symbol">BNB/USD</span>
+            </div>
+            <div class="price">USD 443.56</div>
+            <div class="stats">
+              <span>36,641.20</span>
+              <span class="change red">-1.24%</span>
+            </div>
+          </div>
+        </div>
+        <div class="market-update">
+          <h2>Market Update</h2>
+          <button>View All</button>
+        </div>
+      </div>
+      <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Last Price</th>
+                    <th>24h %</th>
+                    <th>Market Cap</th>
+                    <th>Last 7 Days</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Bitcoin <span style="font-size: 12px; color: #999;">BTC</span></td>
+                    <td>$56,623.54</td>
+                    <td class="positive">+1.45%</td>
+                    <td>$880,423,640,582</td>
+                    <td><div class="chart green"></div></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Ethereum <span style="font-size: 12px; color: #999;">ETH</span></td>
+                    <td>$56,623.54</td>
+                    <td class="negative">-5.12%</td>
+                    <td>$880,423,640,582</td>
+                    <td><div class="chart red"></div></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Tether <span style="font-size: 12px; color: #999;">USDT/USD</span></td>
+                    <td>$56,623.54</td>
+                    <td class="positive">+1.45%</td>
+                    <td>$880,423,640,582</td>
+                    <td><div class="chart green"></div></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>BNB <span style="font-size: 12px; color: #999;">BNB/USD</span></td>
+                    <td>$56,623.54</td>
+                    <td class="negative">-3.75%</td>
+                    <td>$880,423,640,582</td>
+                    <td><div class="chart red"></div></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Solana <span style="font-size: 12px; color: #999;">SOL</span></td>
+                    <td>$56,623.54</td>
+                    <td class="positive">+1.45%</td>
+                    <td>$880,423,640,582</td>
+                    <td><div class="chart green"></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="steps-container">
+      <div class="step">
+          <img src="./assets/images/downlodcrypto.jpg" alt="Step 1 Icon">
+          <h3>Step 1: Download</h3>
+          <p>Stacks is a production-ready library of stackable content blocks built in React Native.</p>
+      </div>
+      <div class="step">
+          <img src="./assets/images/wallet.jpg" alt="Step 2 Icon">
+          <h3>Step 2: Connect Wallet</h3>
+          <p>Stacks is a production-ready library of stackable content blocks built in React Native.</p>
+      </div>
+      <div class="step">
+          <img src="./assets/images/mining.webp" alt="Step 3 Icon">
+          <h3>Step 3: Start Trading</h3>
+          <p>Stacks is a production-ready library of stackable content blocks built in React Native.</p>
+      </div>
+      <div class="step">
+          <img src="./assets/images/earn.jpeg" alt="Step 4 Icon">
+          <h3>Step 4: Earn Money</h3>
+          <p>Stacks is a production-ready library of stackable content blocks built in React Native.</p>
+      </div>
+  </div>
+  
+</body>
+</html>
