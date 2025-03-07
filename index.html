@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CryptEx - Buy & Sell Digital Assets</title>
     <style>
-        * {
+        *{
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -15,53 +15,96 @@
             font-family: Arial, sans-serif;
             background-color: #0d1117;
             color: white;
-            margin: 0;
-          
         }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background-color: #161b22;
-            border-bottom: 1px solid #222831;
-        }
+        
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #161b22;
+    border-bottom: 1px solid #222831;
+    position: relative;
+}
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1rem;
-        }
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
 
-        nav ul li a {
-            text-decoration: none;
-            color: #c9d1d9;
-            transition: color 0.3s;
-        }
+.nav-links li {
+    display: inline;
+}
 
-        nav ul li a:hover {
-            color: blue;
-        }
+.nav-links li a {
+    text-decoration: none;
+    color: #c9d1d9;
+    transition: color 0.3s;
+}
 
-        .btn-wallet {
-            background-color: #238636;
-            color: white;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+.nav-links li a:hover {
+    color: blue;
+}
 
-        .btn-wallet:hover {
-            background-color: #2ea043;
-        }
+/* Wallet Button */
+.btn-wallet {
+    background-color: #238636;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-wallet:hover {
+    background-color: #2ea043;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+}
+
+/* Hide Checkbox */
+#menu-toggle {
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #161b22;
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    
+    #menu-toggle:checked + .hamburger + nav .nav-links {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+    }
+}
 
         .main-content {
             display: flex;
@@ -100,151 +143,89 @@
             background-color: #2ea043;
         }
 
-.dashboard {
-  padding: 20px;
-}
-
-.header .menu {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  list-style: none;
-  padding: 0;
-  margin: 0 0 20px 0;
-}
-
-.header .menu li {
-  padding: 10px 15px;
-  background-color: #1a1a1a;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.crypto-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-.card {
-  background-color: #1a1a1a;
-  padding: 15px;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.price {
-  font-size: 1.5em;
-  margin: 10px 0;
-}
-
-.stats {
-  display: flex;
-  justify-content: space-between;
-}
-
-.change {
-  font-weight: bold;
-}
-
-.change.green {
-  color: #0f0;
-}
-
-.change.red {
-  color: #f00;
-}
-
-.market-update {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.market-update h2 {
-  margin: 0;
-}
-
-.market-update button {
-  padding: 10px 20px;
-  background-color: #1a1a1a;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-}
-.table-container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 20px auto;
-            overflow-x: auto;
+        .dashboard {
+            padding: 20px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #222;
+        .header .menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
         }
 
-        thead {
-            background-color: #333;
+        .header .menu li {
+            padding: 10px 15px;
+            background-color: #1a1a1a;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #444;
+        .crypto-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid layout */
+            gap: 20px;
         }
 
-        th {
-            font-size: 14px;
+        .card {
+            background-color: #1a1a1a;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .change {
             font-weight: bold;
         }
 
-        td {
-            font-size: 13px;
+        .change.green {
+            color: #0f0;
         }
 
-        .positive {
-            color: #4caf50;
+        .change.red {
+            color: #f00;
         }
 
-        .negative {
-            color: #f44336;
+        .market-update {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
         }
 
-        .chart {
-            height: 30px;
-            width: 100px;
-            background: #444;
+        .market-update h2 {
+            margin: 0;
+        }
+
+        .market-update button {
+            padding: 10px 20px;
+            background-color: #1a1a1a;
+            border: none;
             border-radius: 5px;
-            overflow: hidden;
+            color: #fff;
+            cursor: pointer;
         }
 
-        .chart.green {
-            background: linear-gradient(90deg, #4caf50 70%, #333 30%);
-        }
+        
 
-        .chart.red {
-            background: linear-gradient(90deg, #f44336 70%, #333 30%);
-        }
-
-        @media (max-width: 768px) {
-            th, td {
-                font-size: 12px;
-            }
-
-            .chart {
-                width: 80px;
-            }
-        }
         .steps-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -295,16 +276,29 @@
             .step p {
                 font-size: 13px;
             }
+
+            .crypto-cards {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust grid for smaller screens */
+            }
+
+            .main-content h1 {
+                font-size: 2rem; /* Smaller text on mobile */
+            }
+
+            .main-content p {
+                font-size: 1rem; /* Adjust paragraph text */
+            }
         }
 
-            
     </style>
 </head>
 <body>
     <header>
         <div class="logo">CryptEx</div>
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="hamburger">&#9776;</label>
         <nav>
-            <ul>
+            <ul class="nav-links">
                 <li><a href="#">Homepage</a></li>
                 <li><a href="#">Buy Crypto</a></li>
                 <li><a href="#">Markets</a></li>
@@ -317,155 +311,521 @@
 
     <main>
         <div class="main-content">
-            <div class="hero-text">
-                <h1>Buy & Sell Digital Assets In The Cryptex</h1>
-                <p>Coin Cryptex is the easiest, safest, and fastest way to buy & sell crypto asset exchange.</p>
-                <button class="btn-start">Get started now</button>
-            </div>
+            <h1>Buy & Sell Digital Assets In The Cryptex</h1>
+            <p>Coin Cryptex is the easiest, safest, and fastest way to buy & sell crypto asset exchange.</p>
+            <button class="btn-start">Get started now</button>
+        </div>
     </main>
-    <div class="dashboard">
-        <div class="header">
-          <ul class="menu">
-            <li>Crypto</li>
-            <li>DeFi</li>
-            <li>BSC</li>
-            <li>NFT</li>
-            <li>Metaverse</li>
-            <li>Polkadot</li>
-            <li>Solana</li>
-            <li>Opensea</li>
-            <li>Marketplace</li>
-          </ul>
+
+   
+        </div>
         </div>
         <div class="crypto-cards">
-          <div class="card">
-            <div class="card-header">
-              <span class="coin-name">Bitcoin</span>
-              <span class="coin-symbol">BTC/USD</span>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">Bitcoin</span>
+                    <span class="coin-symbol">BTC/USD</span>
+                </div>
+                <div class="price">USD 97,168.95</div>
+                <div class="stats">
+                    <span>96,641.20</span>
+                    <span class="change red">-0.79%</span>
+                </div>
             </div>
-            <div class="price">USD 96,168.95</div>
-            <div class="stats">
-              <span>36,641.20</span>
-              <span class="change red">-0.79%</span>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">Ethereum</span>
+                    <span class="coin-symbol">ETH/USD</span>
+                </div>
+                <div class="price">USD 2,480.04</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change green">+10.85%</span>
+                </div>
             </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              <span class="coin-name">Ethereum</span>
-              <span class="coin-symbol">ETH/USD</span>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">Tether</span>
+                    <span class="coin-symbol">USDT/USD</span>
+                </div>
+                <div class="price">USD 1.00</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change red">-0.01%</span>
+                </div>
             </div>
-            <div class="price">USD 3,480.04</div>
-            <div class="stats">
-              <span>36,641.20</span>
-              <span class="change green">+10.85%</span>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">XRP</span>
+                    <span class="coin-symbol">xrp/USD</span>
+                </div>
+                <div class="price">USD 2.70</div>
+                <div class="stats">
+                    <span>96,641.20</span>
+                    <span class="change red">-0.79%</span>
+                </div>
             </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              <span class="coin-name">Tether</span>
-              <span class="coin-symbol">USDT/USD</span>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">BNB</span>
+                    <span class="coin-symbol">bnb/USD</span>
+                </div>
+                <div class="price">USD 648.48</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change green">+10.85%</span>
+                </div>
             </div>
-            <div class="price">USD 1.00</div>
-            <div class="stats">
-              <span>36,641.20</span>
-              <span class="change red">-0.01%</span>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">Solana</span>
+                    <span class="coin-symbol">sol/USD</span>
+                </div>
+                <div class="price">USD 172.06</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change red">-0.01%</span>
+                </div>
             </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              <span class="coin-name">BNB</span>
-              <span class="coin-symbol">BNB/USD</span>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">DOGE COIN</span>
+                    <span class="coin-symbol">doge/USD</span>
+                </div>
+                <div class="price">USD 0.2534</div>
+                <div class="stats">
+                    <span>96,641.20</span>
+                    <span class="change red">-0.79%</span>
+                </div>
             </div>
-            <div class="price">USD 443.56</div>
-            <div class="stats">
-              <span>36,641.20</span>
-              <span class="change red">-1.24%</span>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">USDC</span>
+                    <span class="coin-symbol">usdc/USD</span>
+                </div>
+                <div class="price">USD 0.9999</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change green">+10.85%</span>
+                </div>
             </div>
-          </div>
-        </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">wrapped coin</span>
+                    <span class="coin-symbol">wbtc/USD</span>
+                </div>
+                <div class="price">USD 96,986.27</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change red">-0.01%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">Chainlink</span>
+                    <span class="coin-symbol">link/USD</span>
+                </div>
+                <div class="price">USD 17.99</div>
+                <div class="stats">
+                    <span>96,641.20</span>
+                    <span class="change red">-0.79%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">Wrapped</span>
+                    <span class="coin-symbol">stETH/USD</span>
+                </div>
+                <div class="price">USD 3,258.04</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change green">+10.85%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">Stellar</span>
+                    <span class="coin-symbol">XLM/USD</span>
+                </div>
+                <div class="price">USD 0.3431</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change red">-0.01%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">Lite coin</span>
+                    <span class="coin-symbol">Ltc/USD</span>
+                </div>
+                <div class="price">USD 128.54</div>
+                <div class="stats">
+                    <span>96,641.20</span>
+                    <span class="change red">-0.79%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">Shiba Inu</span>
+                    <span class="coin-symbol">SHIB/USD</span>
+                </div>
+                <div class="price">USD 0.00001537</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change green">+1.85%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">Lio Token</span>
+                    <span class="coin-symbol">Ton/USD</span>
+                </div>
+                <div class="price">USD 9.67</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change red">-0.01%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">Bitget Token</span>
+                    <span class="coin-symbol">BGB/USD</span>
+                </div>
+                <div class="price">USD O.9996</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change red">-1.85%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">Jupiter</span>
+                    <span class="coin-symbol">jup/USD</span>
+                </div>
+                <div class="price">USD 0.7478</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change red">-0.01%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">OPTIMISM</span>
+                    <span class="coin-symbol">OP/USD</span>
+                </div>
+                <div class="price">USD 1.14</div>
+                <div class="stats">
+                    <span>96,641.20</span>
+                    <span class="change green">+0.79%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">Celestia</span>
+                    <span class="coin-symbol">Tia/USD</span>
+                </div>
+                <div class="price">USD 3.95</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change green">+3.85%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">QUANT</span>
+                    <span class="coin-symbol">QNT/USD</span>
+                </div>
+                <div class="price">USD 98.37</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change green">+0.01%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">XDC NETWORK</span>
+                    <span class="coin-symbol">XDC/USD</span>
+                </div>
+                <div class="price">USD 0.08896</div>
+                <div class="stats">
+                    <span>96,641.20</span>
+                    <span class="change red">-0.79%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">STACKS</span>
+                    <span class="coin-symbol">STX/USD</span>
+                </div>
+                <div class="price">USD 0.9999</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change green">+1.85%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">NEXO</span>
+                    <span class="coin-symbol">NEXO/USD</span>
+                </div>
+                <div class="price">USD 96,986.27</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change red">-0.01%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">THE GRAPH</span>
+                    <span class="coin-symbol">GRT/USD</span>
+                </div>
+                <div class="price">USD 0.1345</div>
+                <div class="stats">
+                    <span>96,641.20</span>
+                    <span class="change red">-0.79%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">IMMUTABEL</span>
+                    <span class="coin-symbol">IMX/USD</span>
+                </div>
+                <div class="price">USD 0.7317</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change green">+10.85%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">WORLD COIN</span>
+                    <span class="coin-symbol">WLD/USD</span>
+                </div>
+                <div class="price">USD 1.16</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change green">+0.01%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">FLARE</span>
+                    <span class="coin-symbol">FLR/USD</span>
+                </div>
+                <div class="price">USD 0.02018</div>
+                <div class="stats">
+                    <span>96,641.20</span>
+                    <span class="change red">-0.79%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">SEI</span>
+                    <span class="coin-symbol">USDT/USD</span>
+                </div>
+                <div class="price">USD 0.2511</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change red">-0.01%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">MOVEMENT</span>
+                    <span class="coin-symbol">MOVE/USD</span>
+                </div>
+                <div class="price">USD 0.4794</div>
+                <div class="stats">
+                    <span>96,641.20</span>
+                    <span class="change red">-0.79%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">DE XE</span>
+                    <span class="coin-symbol">DEXE/USD</span>
+                </div>
+                <div class="price">USD 18.88</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change green">+10.85%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">TELCOIN</span>
+                    <span class="coin-symbol">TEL/USD</span>
+                </div>
+                <div class="price">USD 0.02159</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change red">-0.01%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">EOS</span>
+                    <span class="coin-symbol">EOS/USD</span>
+                </div>
+                <div class="price">USD 0.6534</div>
+                <div class="stats">
+                    <span>96,641.20</span>
+                    <span class="change red">-0.79%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">USDC</span>
+                    <span class="coin-symbol">usdc/USD</span>
+                </div>
+                <div class="price">USD 0.9999</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change green">+10.85%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">wrapped coin</span>
+                    <span class="coin-symbol">wbtc/USD</span>
+                </div>
+                <div class="price">USD 96,986.27</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change red">-0.01%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">Chainlink</span>
+                    <span class="coin-symbol">link/USD</span>
+                </div>
+                <div class="price">USD 17.99</div>
+                <div class="stats">
+                    <span>96,641.20</span>
+                    <span class="change red">-0.79%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">Tether</span>
+                    <span class="coin-symbol">USDT/USD</span>
+                </div>
+                <div class="price">USD 1.00</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change red">-0.01%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">XRP</span>
+                    <span class="coin-symbol">xrp/USD</span>
+                </div>
+                <div class="price">USD 2.70</div>
+                <div class="stats">
+                    <span>96,641.20</span>
+                    <span class="change red">-0.79%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">BNB</span>
+                    <span class="coin-symbol">bnb/USD</span>
+                </div>
+                <div class="price">USD 648.48</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change green">+10.85%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">Solana</span>
+                    <span class="coin-symbol">sol/USD</span>
+                </div>
+                <div class="price">USD 172.06</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change red">-0.01%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">DOGE COIN</span>
+                    <span class="coin-symbol">doge/USD</span>
+                </div>
+                <div class="price">USD 0.2534</div>
+                <div class="stats">
+                    <span>96,641.20</span>
+                    <span class="change red">-0.79%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">USDC</span>
+                    <span class="coin-symbol">usdc/USD</span>
+                </div>
+                <div class="price">USD 0.9999</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change green">+10.85%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">wrapped coin</span>
+                    <span class="coin-symbol">wbtc/USD</span>
+                </div>
+                <div class="price">USD 96,986.27</div>
+                <div class="stats">
+                    <span>36,641.20</span>
+                    <span class="change red">-0.01%</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="coin-name">Chainlink</span>
+                    <span class="coin-symbol">link/USD</span>
+                </div>
+                <div class="price">USD 17.99</div>
+                <div class="stats">
+                    <span>96,641.20</span>
+                    <span class="change red">-0.79%</span>
+                </div>
+            </div>
+            </div>
         <div class="market-update">
-          <h2>Market Update</h2>
-          <button>View All</button>
+            <h2>Market Update</h2>
+            <button>View All</button>
         </div>
-      </div>
-      <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Last Price</th>
-                    <th>24h %</th>
-                    <th>Market Cap</th>
-                    <th>Last 7 Days</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Bitcoin <span style="font-size: 12px; color: #999;">BTC</span></td>
-                    <td>$56,623.54</td>
-                    <td class="positive">+1.45%</td>
-                    <td>$880,423,640,582</td>
-                    <td><div class="chart green"></div></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Ethereum <span style="font-size: 12px; color: #999;">ETH</span></td>
-                    <td>$56,623.54</td>
-                    <td class="negative">-5.12%</td>
-                    <td>$880,423,640,582</td>
-                    <td><div class="chart red"></div></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Tether <span style="font-size: 12px; color: #999;">USDT/USD</span></td>
-                    <td>$56,623.54</td>
-                    <td class="positive">+1.45%</td>
-                    <td>$880,423,640,582</td>
-                    <td><div class="chart green"></div></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>BNB <span style="font-size: 12px; color: #999;">BNB/USD</span></td>
-                    <td>$56,623.54</td>
-                    <td class="negative">-3.75%</td>
-                    <td>$880,423,640,582</td>
-                    <td><div class="chart red"></div></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Solana <span style="font-size: 12px; color: #999;">SOL</span></td>
-                    <td>$56,623.54</td>
-                    <td class="positive">+1.45%</td>
-                    <td>$880,423,640,582</td>
-                    <td><div class="chart green"></div></td>
-                </tr>
-            </tbody>
-        </table>
     </div>
+
     <div class="steps-container">
-      <div class="step">
-          <img src="./assets/images/downlodcrypto.jpg" alt="Step 1 Icon">
-          <h3>Step 1: Download</h3>
-          <p>Stacks is a production-ready library of stackable content blocks built in React Native.</p>
-      </div>
-      <div class="step">
-          <img src="./assets/images/wallet.jpg" alt="Step 2 Icon">
-          <h3>Step 2: Connect Wallet</h3>
-          <p>Stacks is a production-ready library of stackable content blocks built in React Native.</p>
-      </div>
-      <div class="step">
-          <img src="./assets/images/mining.webp" alt="Step 3 Icon">
-          <h3>Step 3: Start Trading</h3>
-          <p>Stacks is a production-ready library of stackable content blocks built in React Native.</p>
-      </div>
-      <div class="step">
-          <img src="./assets/images/earn.jpeg" alt="Step 4 Icon">
-          <h3>Step 4: Earn Money</h3>
-          <p>Stacks is a production-ready library of stackable content blocks built in React Native.</p>
-      </div>
-  </div>
-  
+        <div class="step">
+            <img src="./assets/images/downlodcrypto.jpg" alt="Step 1 Icon">
+            <h3>Step 1: Download</h3>
+            <p>Stacks is a production-ready library of stackable content blocks built in React Native.</p>
+        </div>
+        <div class="step">
+            <img src="./assets/images/wallet.jpg" alt="Step 2 Icon">
+            <h3>Step 2: Connect Wallet</h3>
+            <p>Stacks is a production-ready library of stackable content blocks built in React Native.</p>
+        </div>
+        <div class="step">
+            <img src="./assets/images/mining.webp" alt="Step 3 Icon">
+            <h3>Step 3: Start Trading</h3>
+            <p>Stacks is a production-ready library of stackable content blocks built in React Native.</p>
+        </div>
+        <div class="step">
+            <img src="./assets/images/earn.jpeg" alt="Step 4 Icon">
+            <h3>Step 4: Earn Money</h3>
+            <p>Stacks is a production-ready library of stackable content blocks built in React Native.</p>
+        </div>
+    </div>
+    <script>
+        
+    </script>
+
 </body>
 </html>

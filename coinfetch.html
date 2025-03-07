@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Prices</title>
+</head>
+<body>
+
+    <h1>Crypto Prices</h1>
+    <div id="crypto-list"></div> <!-- This is the missing element -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const cryptoContainer = document.getElementById("crypto-list");
+
+            fetch("https://67c5828b351c081993fa4768.mockapi.io/crypto")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch data");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    cryptoContainer.innerHTML = data.map(crypto => `
+                        <div class="crypto-item" style="border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 5px;">
+                            <h2>${crypto.name} (${crypto.symbol})</h2>
+                            <p>Price: $${crypto.price}</p>
+                            <p>Market Cap: $${crypto.marketCap}</p>
+                            <p>Volume: $${crypto.volume}</p>
+                        </div>
+                    `).join('');
+                })
+                .catch(error => {
+                    cryptoContainer.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+                });
+        });
+    </script>
+
+</body>
+</html>
