@@ -15,6 +15,7 @@
             const cryptoContainer = document.getElementById("crypto-list");
 
             fetch("https://67c5828b351c081993fa4768.mockapi.io/crypto")
+
                 .then(response => {
                     if (!response.ok) {
                         throw new Error("Failed to fetch data");
@@ -35,6 +36,7 @@
                     cryptoContainer.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
                 });
         });
+
     </script>
 
 </body>

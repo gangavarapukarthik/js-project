@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptEx - Buy & Sell Digital Assets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0d1117;
+            color: white;
+        }
+
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #161b22;
+            border-bottom: 1px solid #222831;
+            position: relative;
+        }
+
+        .positive {
+            color: #00ff00;
+            /* Green for positive change */
+        }
+
+        .negative {
+            color: #ff4444;
+            /* Red for negative change */
+        }
+
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #c9d1d9;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: blue;
+        }
+
+        /* Wallet Button */
+        .btn-wallet {
+            background-color: #238636;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-wallet:hover {
+            background-color: #2ea043;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Hide Checkbox */
+        #menu-toggle {
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #161b22;
+                text-align: center;
+                padding: 1rem 0;
+            }
+
+
+            #menu-toggle:checked+.hamburger+nav .nav-links {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 3rem 1rem;
+            background-image: url(./assets/images/mainimg.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .main-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .main-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #c9d1d9;
+        }
+
+        .btn-start {
+            background-color: #238636;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-start:hover {
+            background-color: #2ea043;
+        }
+
+        .dashboard {
+            padding: 20px;
+        }
+
+        .header .menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+
+        .header .menu li {
+            padding: 10px 15px;
+            background-color: #1a1a1a;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .crypto-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            /* Responsive grid layout */
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #1a1a1a;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .change {
+            font-weight: bold;
+        }
+
+        .change.green {
+            color: #0f0;
+        }
+
+        .change.red {
+            color: #f00;
+        }
+
+        .market-update {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .market-update h2 {
+            margin: 0;
+        }
+
+        .market-update button {
+            padding: 10px 20px;
+            background-color: #1a1a1a;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .step {
+            text-align: center;
+            background-color: #222;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step img {
+            width: 60px;
+            margin-bottom: 15px;
+        }
+
+        .step h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .step p {
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .step img {
+                width: 50px;
+            }
+
+            .step h3 {
+                font-size: 16px;
+            }
+
+            .step p {
+                font-size: 13px;
+            }
+
+            .crypto-cards {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                /* Adjust grid for smaller screens */
+            }
+
+            .main-content h1 {
+                font-size: 2rem;
+                /* Smaller text on mobile */
+            }
+
+            .main-content p {
+                font-size: 1rem;
+                /* Adjust paragraph text */
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">CryptEx</div>
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="hamburger">&#9776;</label>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#">Homepage</a></li>
+                <li><a href="#">Buy Crypto</a></li>
+                <li><a href="#">Markets</a></li>
+                <li><a href="#">Sell Crypto</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </nav>
+        <button class="btn-wallet">Wallet</button>
+    </header>
+
+    <main>
+        <div class="main-content">
+            <h1>Buy & Sell Digital Assets In The Cryptex</h1>
+            <p>Coin Cryptex is the easiest, safest, and fastest way to buy & sell crypto asset exchange.</p>
+            <button class="btn-start">Get started now</button>
+        </div>
+    </main>
+
+
+    </div>
+    </div>
+    <div class="crypto-cards container" id="crypto-container">
+
+
+    </div>
+    <div class="market-update">
+        <h2>Market Update</h2>
+        <button>View All</button>
+    </div>
+    </div>
+
+    <div class="steps-container">
+        <div class="step">
+            <img src="./assets/images/downlodcrypto.jpg" alt="Step 1 Icon">
+            <h3>Step 1: Download</h3>
+            <p>Stacks is a production-ready library of stackable content blocks built in React Native.</p>
+        </div>
+        <div class="step">
+            <img src="./assets/images/wallet.jpg" alt="Step 2 Icon">
+            <h3>Step 2: Connect Wallet</h3>
+            <p>Stacks is a production-ready library of stackable content blocks built in React Native.</p>
+        </div>
+        <div class="step">
+            <img src="./assets/images/mining.webp" alt="Step 3 Icon">
+            <h3>Step 3: Start Trading</h3>
+            <p>Stacks is a production-ready library of stackable content blocks built in React Native.</p>
+        </div>
+        <div class="step">
+            <img src="./assets/images/earn.jpeg" alt="Step 4 Icon">
+            <h3>Step 4: Earn Money</h3>
+            <p>Stacks is a production-ready library of stackable content blocks built in React Native.</p>
+        </div>
+    </div>
+    <script src="./script1.js"></script>
+
+</body>
+
+</html>
